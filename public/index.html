@@ -1,1 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Football AI Analyst Pro</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="wrap">
+<header>
+<h1>⚽ Football AI Analyst Pro</h1>
+<p>Automatic match analysis and predictions</p>
+</header>
 
+<section class="panel">
+<h2>Analyse a match</h2>
+
+<label>Home team</label>
+<input id="home" placeholder="e.g. Arsenal">
+
+<label>Away team</label>
+<input id="away" placeholder="e.g. Chelsea">
+
+<button id="go">ANALYSE MATCH</button>
+</section>
+
+<div id="status"></div>
+
+<section id="results" hidden>
+<h2 id="fixture"></h2>
+<p id="summary"></p>
+<div id="markets"></div>
+<h2>Best three predictions</h2>
+<div id="best"></div>
+<h2>Offside and foul estimates</h2>
+<div id="discipline"></div>
+<h2>Recent form</h2>
+<div id="form"></div>
+<p id="note"></p>
+</section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
