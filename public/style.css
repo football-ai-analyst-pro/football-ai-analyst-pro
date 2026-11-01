@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #f1f5f9;
+  color: #172033;
+  font-family: Arial, sans-serif;
+}
+
+.wrap {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  color: #087443;
+  font-size: 27px;
+}
+
+.panel {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px #00000012;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  background: #087443;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button:disabled {
+  opacity: 0.6;
+}
+
+#status {
+  margin: 18px 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+#results {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+#markets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card {
+  padding: 14px;
+  background: #ecfdf5;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card span {
+  font-size: 13px;
+}
+
+.card strong {
+  color: #087443;
+  font-size: 20px;
+}
+
+.bestrow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pill {
+  background: #dcfce7;
+  color: #166534;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+@media (max-width: 450px) {
+  body {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+}
