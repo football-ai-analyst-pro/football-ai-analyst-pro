@@ -1,8 +1,11 @@
 {
-  "name": "football-ai-analyst-pro",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {"start": "node server.js"},
-  "dependencies": {"express": "^4.21.2"}
+"name": "football-ai-analyst-pro",
+"version": "1.0.0",
+"type": "module",
+"scripts": {
+"start": "node server.js"
+},
+"dependencies": {
+"express": "^4.21.2"
+}
 }
