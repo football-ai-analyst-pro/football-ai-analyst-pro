@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101c32"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/style.css"><title>Football AI Analyst Pro</title></head>
+<body><main class="wrap">
+<header><div class="ball">⚽</div><div><h1>Football AI Analyst Pro</h1><p>Automatic match research & statistical predictions</p></div></header>
+<section class="panel">
+<h2>Analyse a match</h2><label>Home team<input id="home" placeholder="e.g. Arsenal" autocomplete="off"></label><label>Away team<input id="away" placeholder="e.g. Chelsea" autocomplete="off"></label>
+<button id="go">ANALYSE MATCH</button><p class="hint">Enter team names only. The app retrieves available recent match data automatically.</p>
+</section>
+<div id="status" role="status"></div><section id="results" hidden>
+<div class="panel"><h2 id="fixture"></h2><p id="summary" class="hint"></p><div class="grid" id="markets"></div></div>
+<div class="panel"><h2>Best three statistical selections</h2><div id="best"></div></div>
+<div class="panel"><h2>Offside & foul estimates</h2><div id="discipline"></div><p class="hint">These event statistics may be unavailable for some leagues or fixtures.</p></div>
+<div class="panel"><h2>Recent form data</h2><div id="form"></div></div>
+<p class="disclaimer" id="note"></p>
+</section>
+<footer>Not a betting service. No prediction is guaranteed. Always check team news and match conditions.</footer>
+</main><script src="/app.js"></script></body></html>
