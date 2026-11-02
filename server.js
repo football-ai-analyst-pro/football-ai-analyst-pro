@@ -18,80 +18,23 @@ function asArray(payload) {
   return [];
 }
 
-async function sportmonksApi(pathAndQuery, params = {}) {
-  if (!SPORTMONKS_API_KEY) {
-    throw new Error("SportMonks is not configured yet. Add SPORTMONKS_API_KEY in your hosting provider's server-side Secrets.");
-  }
-
-  const url = new URL(`${SPORTMONKS_API_BASE}/${String(pathAndQuery).replace(/^\/+/, "")}`);
-  url.searchParams.set("api_token", SPORTMONKS_API_KEY);
-
-  for (const [key, value] of Object.entries(params)) {
-    if (value === undefined || value === null || value === "") continue;
-    url.searchParams.set(key, String(value));
-  }
-
-  const res = await fetch(url);
-  if (!res.ok) {
-    let details = "";
-    try {
-      const body = await res.json();
-      details = body?.error?.message || body?.message || JSON.stringify(body);
-    } catch {}
-    throw new Error(`SportMonks API request failed (${res.status}${details ? `: ${details}` : ""}).`);
-  }
-
-  const body = await res.json();
-  if (body?.error) throw new Error(body.error.message || "SportMonks API reported an error.");
-  return body?.data ?? body;
-}
-
-async function teamSearch(name) {
-  const searchName = String(name || "").trim();
-  if (!searchName) throw new Error("Enter a valid team name.");
-
-  const attempts = [
-    `teams/search/${encodeURIComponent(searchName)}`,
-    `teams?search=${encodeURIComponent(searchName)}`
-  ];
-
-  let lastError = null;
-  for (const endpoint of attempts) {
-    try {
-      const payload = await sportmonksApi(endpoint);
-      const rows = asArray(payload);
-      if (!rows.length) continue;
-
-      const first = rows[0];
-      return first?.team ?? first;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-
-  if (lastError) throw new Error(lastError.message || `Could not find a team matching "${searchName}". Check the spelling.`);
-  throw new Error(`Could not find a team matching "${searchName}". Check the spelling.`);
-}
-
 async function teamForm(teamId) {
-  const attempts = [
-    { teams: teamId, status: "finished", order: "starting_at.desc", per_page: 10 },
-    { team_id: teamId, status: "finished", order: "starting_at.desc", per_page: 10 }
-  ];
+const end = new Date();
+const start = new Date();
+start.setFullYear(start.getFullYear() - 2);
 
-  let lastError = null;
-  for (const params of attempts) {
-    try {
-      const payload = await sportmonksApi("fixtures", params);
-      const rows = asArray(payload);
-      if (rows.length) return rows;
-    } catch (error) {
-      lastError = error;
-    }
-  }
+const formatDate = date => date.toISOString().slice(0, 10);
 
-  if (lastError) throw lastError;
-  return [];
+const endpoint = "fixtures/between/${formatDate(start)}/${formatDate(end)}/${teamId}";
+
+const payload = await sportmonksApi(endpoint, {
+include: "participants;scores;state",
+order: "desc",
+per_page: 50
+});
+
+return asArray(payload);
+
 }
 
 const n = v => Number.isFinite(Number(v)) ? Number(v) : null;
