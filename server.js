@@ -25,8 +25,8 @@ start.setFullYear(start.getFullYear() - 2);
 
 const formatDate = date => date.toISOString().slice(0, 10);
 
-const endpoint = "fixtures/between/${formatDate(start)}/${formatDate(end)}/${teamId}";
 
+const endpoint = `fixtures/between/${formatDate(start)}/${formatDate(end)}/${teamId}`;
 const payload = await sportmonksApi(endpoint, {
 include: "participants;scores;state",
 order: "desc",
